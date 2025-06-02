@@ -1,0 +1,293 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vértice</title>
+    <meta name="description" content="Explore projetos de prevenção a desastres naturais em todo o Brasil">
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="/css/style.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="index.html">
+                <div class="brand-icon me-3">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <div>
+                    <h5 class="mb-0 brand-title">Vértice</h5>
+                    <small class="text-muted">Alerta e Prevenção</small>
+                </div>
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Início</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="projetos.html">Projetos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="voluntario.html">Voluntariado</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="pontos-apoio.html">Pontos de Apoio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="reportar.html">Reportar</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="sobre.html">Sobre</a>
+                    </li>
+                </ul>
+                <a href="tel:199" class="btn btn-emergency ms-3">
+                    <i class="fas fa-phone me-1"></i>
+                    Emergência: 199
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.html">Início</a></li>
+                    <li class="breadcrumb-item active">Projetos</li>
+                </ol>
+            </nav>
+            <div class="row">
+                <div class="col-lg-8">
+                    <h1>Projetos de Prevenção</h1>
+                    <p class="lead">Explore iniciativas e sistemas de monitoramento, alerta e resposta a desastres naturais em todo o Brasil</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Search and Filters -->
+    <section class="py-4 bg-light">
+        <div class="container">
+            <div class="row g-3">
+                <div class="col-md-6 col-lg-4">
+                    <div class="input-group">
+                        <span class="input-group-text">
+                            <i class="fas fa-search"></i>
+                        </span>
+                        <input type="text" class="form-control" id="searchInput" placeholder="Buscar projetos...">
+                    </div>
+                </div>
+                <div class="col-md-3 col-lg-2">
+                    <select class="form-select" id="areaFilter">
+                        <option value="">Todas as áreas</option>
+                        <option value="Hidrometeorológica">Hidrometeorológica</option>
+                        <option value="Geológica">Geológica</option>
+                        <option value="Incêndios">Incêndios</option>
+                        <option value="Tecnológica">Tecnológica</option>
+                        <option value="Saúde">Saúde</option>
+                        <option value="Educação">Educação</option>
+                    </select>
+                </div>
+                <div class="col-md-3 col-lg-2">
+                    <select class="form-select" id="typeFilter">
+                        <option value="">Todos os tipos</option>
+                        <option value="Monitoramento">Monitoramento</option>
+                        <option value="Alerta">Alerta</option>
+                        <option value="Resposta">Resposta</option>
+                        <option value="Prevenção">Prevenção</option>
+                        <option value="Educação">Educação</option>
+                    </select>
+                </div>
+                <div class="col-md-6 col-lg-2">
+                    <select class="form-select" id="locationFilter">
+                        <option value="">Todas as localizações</option>
+                        <option value="Nacional">Nacional</option>
+                        <option value="São Paulo">São Paulo</option>
+                        <option value="Rio de Janeiro">Rio de Janeiro</option>
+                        <option value="Minas Gerais">Minas Gerais</option>
+                        <option value="Rio Grande do Sul">Rio Grande do Sul</option>
+                        <option value="Santa Catarina">Santa Catarina</option>
+                    </select>
+                </div>
+                <div class="col-md-6 col-lg-2">
+                    <button class="btn btn-outline-secondary w-100" onclick="clearFilters()">
+                        <i class="fas fa-times me-1"></i>
+                        Limpar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Grid -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row mb-3">
+                <div class="col-lg-6">
+                    <div id="resultsCount" class="text-muted">
+                        Carregando projetos...
+                    </div>
+                </div>
+                <div class="col-lg-6 text-lg-end">
+                    <div class="btn-group" role="group">
+                        <input type="radio" class="btn-check" name="sortBy" id="sortRelevance" value="relevance" checked>
+                        <label class="btn btn-outline-primary btn-sm" for="sortRelevance">Relevância</label>
+                        
+                        <input type="radio" class="btn-check" name="sortBy" id="sortDate" value="date">
+                        <label class="btn btn-outline-primary btn-sm" for="sortDate">Mais recentes</label>
+                        
+                        <input type="radio" class="btn-check" name="sortBy" id="sortName" value="name">
+                        <label class="btn btn-outline-primary btn-sm" for="sortName">Nome A-Z</label>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row g-4" id="projectsGrid">
+                <!-- Projects will be loaded here by JavaScript -->
+            </div>
+            
+            <!-- No results message -->
+            <div id="noResults" class="text-center py-5" style="display: none;">
+                <i class="fas fa-search fa-3x text-muted mb-3"></i>
+                <h4 class="text-muted">Nenhum projeto encontrado</h4>
+                <p class="text-muted">Tente ajustar os filtros ou termos de busca</p>
+                <button class="btn btn-primary" onclick="clearFilters()">Limpar Filtros</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Details Modal -->
+    <div class="modal fade" id="projectModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="projectModalTitle">Detalhes do Projeto</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body" id="projectModalBody">
+                    <!-- Project details will be loaded here -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                    <a href="#" id="projectModalLink" class="btn btn-primary" target="_blank">
+                        <i class="fas fa-external-link-alt me-1"></i>
+                        Visitar Site
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+   <!-- Footer -->
+    <footer class="footer bg-dark text-white py-5">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-4 mb-4">
+            <div class="d-flex align-items-center mb-3">
+              <div class="brand-icon me-3">
+                <i class="fas fa-shield-alt"></i>
+              </div>
+              <div>
+                <h5 class="mb-0 text-muted">Vértice</h5>
+                <small class="text-muted">Alerta e Prevenção</small>
+              </div>
+            </div>
+            <p class="text-muted">
+              Portal nacional dedicado à prevenção e resposta a desastres
+              naturais, conectando projetos, voluntários e comunidades por todo
+              o Brasil.
+            </p>
+          </div>
+          <div class="col-lg-2 col-md-6 mb-4">
+            <h6 class="text-muted mb-3">Navegação</h6>
+            <ul class="list-unstyled">
+              <li><a href="index.html" class="text-muted">Início</a></li>
+              <li><a href="projetos.html" class="text-muted">Projetos</a></li>
+              <li>
+                <a href="voluntario.html" class="text-muted">Voluntariado</a>
+              </li>
+              <li><a href="sobre.html" class="text-muted">Sobre</a></li>
+            </ul>
+          </div>
+          <div class="col-lg-2 col-md-6 mb-4">
+            <h6 class="text-muted mb-3">Serviços</h6>
+            <ul class="list-unstyled">
+              <li>
+                <a href="pontos-apoio.html" class="text-muted"
+                  >Pontos de Apoio</a
+                >
+              </li>
+              <li><a href="reportar.html" class="text-muted">Reportar</a></li>
+              <li><a href="#" class="text-muted">Alertas</a></li>
+              <li><a href="#" class="text-muted">Monitoramento</a></li>
+            </ul>
+          </div>
+          <div class="col-lg-4 mb-4">
+            <h6 class="text-muted mb-3">Emergências</h6>
+            <div class="emergency-contacts">
+              <div class="d-flex align-items-center mb-2">
+                <i class="fas fa-phone text-danger me-2"></i>
+                <span><strong>199</strong> - Defesa Civil</span>
+              </div>
+              <div class="d-flex align-items-center mb-2">
+                <i class="fas fa-fire text-danger me-2"></i>
+                <span><strong>193</strong> - Bombeiros</span>
+              </div>
+              <div class="d-flex align-items-center mb-2">
+                <i class="fas fa-ambulance text-danger me-2"></i>
+                <span><strong>192</strong> - SAMU</span>
+              </div>
+              <div class="d-flex align-items-center">
+                <i class="fas fa-shield-alt text-danger me-2"></i>
+                <span><strong>190</strong> - Polícia Militar</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <hr class="my-4" />
+        <div class="row align-items-center">
+          <div class="col-md-6">
+            <p class="text-muted mb-0">
+              &copy; 2025 Vértice. Todos os direitos reservados.
+            </p>
+          </div>
+          <div class="col-md-6 text-md-end">
+            <p class="text-muted mb-0">
+              Desenvolvido para proteger vidas
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="js/data.js"></script>
+    <script src="js/script.js"></script>
+    </script>
+    <script
+      defer
+      src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015"
+      integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ=="
+      data-cf-beacon='{"rayId":"949792d74ddb4eef","serverTiming":{"name":{"cfExtPri":true,"cfEdge":true,"cfOrigin":true,"cfL4":true,"cfSpeedBrain":true,"cfCacheStatus":true}},"version":"2025.5.0","token":"dc79be98a7d9454985898a9490bd0402"}'
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

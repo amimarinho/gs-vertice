@@ -1,0 +1,290 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pontos de Apoio - Vértice</title>
+    <meta name="description" content="Encontre pontos de apoio e abrigos de emergência em sua região">
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="/css/style.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="index.html">
+                <div class="brand-icon me-3">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <div>
+                    <h5 class="mb-0 brand-title">Vértice</h5>
+                    <small class="text-muted">Alerta e Prevenção</small>
+                </div>
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Início</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="projetos.html">Projetos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="voluntario.html">Voluntariado</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="pontos-apoio.html">Pontos de Apoio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="reportar.html">Reportar</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="sobre.html">Sobre</a>
+                    </li>
+                </ul>
+                <a href="tel:199" class="btn btn-emergency ms-3">
+                    <i class="fas fa-phone me-1"></i>
+                    Emergência: 199
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.html">Início</a></li>
+                    <li class="breadcrumb-item active">Pontos de Apoio</li>
+                </ol>
+            </nav>
+            <div class="row">
+                <div class="col-lg-8">
+                    <h1>Pontos de Apoio</h1>
+                    <p class="lead">Encontre abrigos, centros de distribuição e pontos de assistência emergencial em sua região</p>
+                </div>
+                <div class="col-lg-4 text-lg-end">
+                    <div class="d-inline-flex align-items-center bg-danger bg-opacity-10 text-danger px-3 py-2 rounded-pill">
+                        <i class="fas fa-map-marker-alt me-2"></i>
+                        <span class="fw-medium">Localize Ajuda</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Search and Filters -->
+    <section class="py-4 bg-light">
+        <div class="container">
+            <div class="row g-3">
+                <div class="col-md-6 col-lg-4">
+                    <div class="input-group">
+                        <span class="input-group-text">
+                            <i class="fas fa-search"></i>
+                        </span>
+                        <input type="text" class="form-control" id="searchSupport" placeholder="Buscar por cidade ou tipo...">
+                    </div>
+                </div>
+                <div class="col-md-3 col-lg-2">
+                    <select class="form-select" id="typeFilter">
+                        <option value="">Todos os tipos</option>
+                        <option value="Abrigo">Abrigos</option>
+                        <option value="Hospital">Hospitais</option>
+                        <option value="Distribuição">Distribuição</option>
+                        <option value="Bombeiros">Bombeiros</option>
+                        <option value="Defesa Civil">Defesa Civil</option>
+                    </select>
+                </div>
+                <div class="col-md-3 col-lg-2">
+                    <select class="form-select" id="statusFilter">
+                        <option value="">Todos os status</option>
+                        <option value="Ativo">Ativos</option>
+                        <option value="Lotado">Lotados</option>
+                        <option value="Emergência">Emergência</option>
+                    </select>
+                </div>
+                <div class="col-md-6 col-lg-2">
+                    <select class="form-select" id="regionFilter">
+                        <option value="">Todas as regiões</option>
+                        <option value="São Paulo">São Paulo</option>
+                        <option value="Rio de Janeiro">Rio de Janeiro</option>
+                        <option value="Minas Gerais">Minas Gerais</option>
+                        <option value="Rio Grande do Sul">Rio Grande do Sul</option>
+                    </select>
+                </div>
+                <div class="col-md-6 col-lg-2">
+                    <button class="btn btn-outline-secondary w-100" onclick="clearSupportFilters()">
+                        <i class="fas fa-times me-1"></i>
+                        Limpar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Support Points Grid -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row mb-3">
+                <div class="col-lg-6">
+                    <div id="supportResultsCount" class="text-muted">
+                        Carregando pontos de apoio...
+                    </div>
+                </div>
+                <div class="col-lg-6 text-lg-end">
+                    <button class="btn btn-outline-primary btn-sm" onclick="toggleMapView()">
+                        <i class="fas fa-map me-1"></i>
+                        Ver no Mapa
+                    </button>
+                </div>
+            </div>
+            
+            <div class="row g-4" id="supportPointsGrid">
+                <!-- Support points will be loaded here -->
+            </div>
+            
+            <!-- No results message -->
+            <div id="noSupportResults" class="text-center py-5" style="display: none;">
+                <i class="fas fa-map-marker-alt fa-3x text-muted mb-3"></i>
+                <h4 class="text-muted">Nenhum ponto de apoio encontrado</h4>
+                <p class="text-muted">Tente ajustar os filtros ou termos de busca</p>
+                <button class="btn btn-primary" onclick="clearSupportFilters()">Limpar Filtros</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Emergency Modal -->
+    <div class="modal fade" id="emergencyModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-danger text-white">
+                    <h5 class="modal-title">
+                        <i class="fas fa-exclamation-triangle me-2"></i>
+                        Situação de Emergência
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="text-center mb-4">
+                        <i class="fas fa-phone fa-3x text-danger mb-3"></i>
+                        <h5>Se você está em uma situação de emergência,</h5>
+                        <p class="text-muted">ligue imediatamente para:</p>
+                    </div>
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <div class="card border-danger">
+                                <div class="card-body text-center">
+                                    <i class="fas fa-shield-alt text-danger fa-2x mb-2"></i>
+                                    <h6>Defesa Civil</h6>
+                                    <a href="tel:199" class="btn btn-danger">199</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card border-danger">
+                                <div class="card-body text-center">
+                                    <i class="fas fa-fire text-danger fa-2x mb-2"></i>
+                                    <h6>Bombeiros</h6>
+                                    <a href="tel:193" class="btn btn-danger">193</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer bg-dark text-white py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <div class="d-flex align-items-center mb-3">
+                        <div class="brand-icon me-3">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <div>
+                            <h5 class="mb-0 text-white">Vértice</h5>
+                            <small class="text-muted">Alerta e Prevenção</small>
+                        </div>
+                    </div>
+                    <p class="text-muted">
+                        Portal nacional dedicado à prevenção e resposta a desastres naturais, 
+                        conectando projetos, voluntários e comunidades por todo o Brasil.
+                    </p>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h6 class="text-white mb-3">Navegação</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="index.html" class="text-muted">Início</a></li>
+                        <li><a href="projetos.html" class="text-muted">Projetos</a></li>
+                        <li><a href="voluntario.html" class="text-muted">Voluntariado</a></li>
+                        <li><a href="sobre.html" class="text-muted">Sobre</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h6 class="text-white mb-3">Serviços</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="pontos-apoio.html" class="text-muted">Pontos de Apoio</a></li>
+                        <li><a href="reportar.html" class="text-muted">Reportar</a></li>
+                        <li><a href="#" class="text-muted">Alertas</a></li>
+                        <li><a href="#" class="text-muted">Monitoramento</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <h6 class="text-white mb-3">Emergências</h6>
+                    <div class="emergency-contacts">
+                        <div class="d-flex align-items-center mb-2">
+                            <i class="fas fa-phone text-danger me-2"></i>
+                            <span><strong>199</strong> - Defesa Civil</span>
+                        </div>
+                        <div class="d-flex align-items-center mb-2">
+                            <i class="fas fa-fire text-danger me-2"></i>
+                            <span><strong>193</strong> - Bombeiros</span>
+                        </div>
+                        <div class="d-flex align-items-center mb-2">
+                            <i class="fas fa-ambulance text-danger me-2"></i>
+                            <span><strong>192</strong> - SAMU</span>
+                        </div>
+                        <div class="d-flex align-items-center">
+                            <i class="fas fa-shield-alt text-danger me-2"></i>
+                            <span><strong>190</strong> - Polícia Militar</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-4">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <p class="text-muted mb-0">&copy; 2024 Vértice. Todos os direitos reservados.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <p class="text-muted mb-0">Desenvolvido para proteger vidas</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="js/data.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/pontos-apoio.js"></script>
+</body>
+</html>
