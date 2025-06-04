@@ -2,6 +2,20 @@
 const projects = [
   {
     id: 1,
+    name: "Adapta Brasil",
+    institution: "AdaptaBrasil MCTI",
+    area: "Hidrometeorológica",
+    type: "Monitoramento",
+    description:
+      "Índices e Indicadores de risco de impactos das mudanças climáticas no Brasil, integrados em uma única plataforma.",
+    location: "Nacional",
+    url: "https://adaptabrasil.mcti.gov.br/",
+    contact: "https://adaptabrasil.mcti.gov.br/contato",
+    lastUpdate: "2024-01-20",
+  },
+  
+  {
+    id: 2,
     name: "Alerta Rio",
     institution: "Prefeitura do Rio de Janeiro",
     area: "Hidrometeorológica",
@@ -9,12 +23,13 @@ const projects = [
     description:
       "Sistema de alerta de chuvas fortes e deslizamentos na cidade do Rio de Janeiro.",
     location: "Rio de Janeiro, RJ",
-    url: "http://alertario.rio.rj.gov.br/",
+    url: "https://www.sistema-alerta-rio.com.br",
     contact: "contato@alertario.rio.rj.gov.br",
     lastUpdate: "2024-01-20",
   },
+  
   {
-    id: 2,
+    id: 3,
     name: "Cemaden Educação",
     institution:
       "Centro Nacional de Monitoramento e Alertas de Desastres Naturais",
@@ -23,12 +38,12 @@ const projects = [
     description:
       "Plataforma de recursos educacionais sobre desastres naturais para escolas e comunidades.",
     location: "Nacional",
-    url: "https://www.cemaden.gov.br/cemaden-educacao/",
+    url: "https://www.gov.br/cemaden/pt-br",
     contact: "cemaden.educacao@gmail.com",
     lastUpdate: "2024-02-10",
   },
   {
-    id: 3,
+    id: 4,
     name: "Defesa Civil de Minas Gerais",
     institution: "Governo de Minas Gerais",
     area: "Geológica",
@@ -40,7 +55,7 @@ const projects = [
     lastUpdate: "2024-02-15",
   },
   {
-    id: 4,
+    id: 5,
     name: "INPE Queimadas",
     institution: "Instituto Nacional de Pesquisas Espaciais",
     area: "Incêndios",
@@ -52,7 +67,7 @@ const projects = [
     lastUpdate: "2024-02-20",
   },
   {
-    id: 5,
+    id: 6,
     name: "Monitoramento de Barragens",
     institution: "Agência Nacional de Águas",
     area: "Tecnológica",
@@ -65,7 +80,7 @@ const projects = [
     lastUpdate: "2024-02-25",
   },
   {
-    id: 6,
+    id: 7,
     name: "Projeto Escudo",
     institution: "Prefeitura de Santos",
     area: "Tecnológica",
@@ -73,12 +88,12 @@ const projects = [
     description:
       "Sistema de monitoramento e alerta de riscos climáticos em Santos.",
     location: "São Paulo",
-    url: "https://www.santos.sp.gov.br/?q=noticia&id=37167",
+    url: "https://www.santos.sp.gov.br/",
     contact: null,
     lastUpdate: "2024-03-01",
   },
   {
-    id: 7,
+    id: 8,
     name: "SAMU 192",
     institution: "Ministério da Saúde",
     area: "Saúde",
@@ -86,25 +101,25 @@ const projects = [
     description:
       "Serviço de Atendimento Móvel de Urgência para emergências médicas.",
     location: "Nacional",
-    url: "http://www.saude.gov.br/servicos/samu",
+    url: "https://www.gov.br/saude/pt-br/composicao/saes/samu-192",
     contact: null,
     lastUpdate: "2024-03-05",
   },
   {
-    id: 8,
-    name: "Sistema de Alerta de Cheias",
+    id: 9,
+    name: "Sistema de Alerta de Cheias - SACE",
     institution: "CPRM",
     area: "Hidrometeorológica",
     type: "Alerta",
     description:
       "Sistema de alerta de cheias para bacias hidrográficas brasileiras.",
     location: "Nacional",
-    url: "https://www.cprm.gov.br/publique/Cheias/",
+    url: "https://www.sgb.gov.br/sace/",
     contact: null,
     lastUpdate: "2024-03-10",
   },
   {
-    id: 9,
+    id: 10,
     name: "Monitoramento de Deslizamentos",
     institution: "IPT",
     area: "Geológica",
@@ -112,12 +127,12 @@ const projects = [
     description:
       "Monitoramento de áreas de risco de deslizamento em São Paulo.",
     location: "São Paulo",
-    url: "https://www.ipt.br/",
+    url: "http://ipt.br/2023/04/25/urbanizacao-e-gestao-territorial/",
     contact: null,
     lastUpdate: "2024-03-15",
   },
   {
-    id: 10,
+    id: 11,
     name: "Brigadas Escolares",
     institution: "Corpo de Bombeiros",
     area: "Incêndios",
@@ -125,12 +140,12 @@ const projects = [
     description:
       "Programa de formação de brigadas escolares de combate a incêndio.",
     location: "Nacional",
-    url: "https://www.corpodebombeiros.sp.gov.br/",
+    url: "https://educacaopublica.corpodebombeiros.sp.gov.br/",
     contact: null,
     lastUpdate: "2024-03-20",
   },
   {
-    id: 11,
+    id: 12,
     name: "Sistema de Informações sobre Desastres",
     institution: "Ministério do Desenvolvimento Regional",
     area: "Tecnológica",
@@ -138,23 +153,11 @@ const projects = [
     description:
       "Plataforma de informações sobre desastres naturais no Brasil.",
     location: "Nacional",
-    url: "https://www.gov.br/mdr/pt-br/assuntos/protecao-e-defesa-civil/sistemas",
+    url: "https://s2id.mi.gov.br/",
     contact: null,
     lastUpdate: "2024-03-25",
   },
-  {
-    id: 12,
-    name: "Defesa Civil nas Escolas",
-    institution: "Secretaria Nacional de Proteção e Defesa Civil",
-    area: "Educação",
-    type: "Educação",
-    description:
-      "Programa de educação sobre prevenção de desastres nas escolas.",
-    location: "Nacional",
-    url: "https://www.gov.br/mdr/pt-br/assuntos/protecao-e-defesa-civil/defesa-civil-na-escola",
-    contact: null,
-    lastUpdate: "2024-03-30",
-  },
+  
 ];
 
 // Pontos de apoio para emergências
