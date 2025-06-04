@@ -1,4 +1,4 @@
-/* * Custom CSS para Vértice Portal de Prevenção a Desastres */
+/* * CSS Customizado para Vértice Portal de Prevenção a Desastres */
 
 /* Importar fonte Inter */
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
@@ -10,12 +10,19 @@
   --brasil-blue: #002776;
   --green-primary: #059669;
   --green-light: #10b981;
+  --green-darker-for-btn: #036040; /* Adicionado para .btn-primary hover & .btn-outline-success hover */
   --blue-primary: #3b82f6;
   --blue-light: #60a5fa;
+  --blue-darker-for-btn: #0058CC; /* Adicionado para .btn-primary & .btn-outline-primary */
   --yellow-primary: #f59e0b;
   --yellow-light: #fbbf24;
+  --yellow-darker-for-btn: #B87500; /* Adicionado para .btn-outline-warning */
   --red-primary: #ef4444;
   --red-light: #f87171;
+  --red-darker-for-btn: #B71C1C; /* Adicionado para .btn-danger */
+  --red-gradient-darker-start: #c00000; /* para btn-emergency */
+  --orange-gradient-darker-end: #d16002; /* para btn-emergency */
+  --info-darker-for-btn: #0B819B; /* Adicionado para .btn-outline-info */
   --gray-50: #f9fafb;
   --gray-100: #f3f4f6;
   --gray-200: #e5e7eb;
@@ -41,7 +48,7 @@ body {
   background-color: #ffffff;
 }
 
-/* Smooth scroll */
+/* Rolagem suave */
 html {
   scroll-behavior: smooth;
 }
@@ -76,9 +83,29 @@ html {
 /* Navbar customizada */
 .navbar {
   padding: 1rem 0;
-  margin-inline: 1rem;
+  /* margin-inline: 1rem; */ /* Removido para melhor controle com media queries */
   backdrop-filter: blur(10px);
   background-color: rgba(255, 255, 255, 0.95) !important;
+}
+
+@media (min-width: 576px) {
+  .navbar {
+    /* margin-inline: 1rem; */ /* Removido para permitir que o fundo da navbar se estenda por toda a largura em todos os tamanhos de tela */
+  }
+}
+
+/* Dimensionamento para tablet do contêiner da caixa de informações do herói */
+@media (min-width: 576px) and (max-width: 767.98px) { /* Corrigido para 767.98px */
+  .hero-section .position-absolute[class*="translate-middle"] {
+    width: 70% !important;
+  }
+}
+
+/* Dimensionamento para celular maior / tablet menor do contêiner da caixa de informações do herói */
+@media (min-width: 391px) and (max-width: 575.98px) { /* Corrigido para 575.98px */
+  .hero-section .position-absolute[class*="translate-middle"] {
+    width: 80% !important;
+  }
 }
 
 .navbar-brand .brand-icon {
@@ -118,7 +145,8 @@ html {
 }
 
 .btn-emergency {
-  background: linear-gradient(135deg, var(--red-primary), #f97316);
+  /* Ajustado para WCAG AA com texto branco */
+  background: linear-gradient(135deg, var(--red-gradient-darker-start), var(--orange-gradient-darker-end));
   border: none;
   color: white;
   font-weight: 600;
@@ -129,13 +157,14 @@ html {
 }
 
 .btn-emergency:hover {
-  background: linear-gradient(135deg, #dc2626, #ea580c);
+  /* Ajustado para WCAG AA com texto branco - um pouco mais escuro que o padrão */
+  background: linear-gradient(135deg, #a00000, #b05001); /* Versões escurecidas do estado hover */
   color: white;
   transform: translateY(-1px);
   box-shadow: 0 4px 12px rgba(239, 68, 68, 0.4);
 }
 
-/* Hero Section */
+/* Seção Hero */
 .hero-section {
   position: relative;
   overflow: hidden;
@@ -186,6 +215,46 @@ html {
   color: #fff !important; /* ou a cor desejada */
 }
 
+/* Laptops Desktop (992px - 1399.98px): Ajustar o dimensionamento da caixa de informações do herói para melhor ajuste do texto e texto em linha única */
+@media (min-width: 992px) and (max-width: 1399.98px) {
+  .hero-section .position-absolute[class*="translate-middle"] { /* Direcionar o contêiner */
+    width: 100% !important; /* Tornar o contêiner com largura total de seu pai col-lg-6 para maximizar o espaço para caixas de informações */
+  }
+  .hero-section .position-absolute[class*="translate-middle"] .row.g-2 .col-6 > div[class*="bg-white"] {
+    padding-top: 1.25rem !important;
+    padding-bottom: 1.25rem !important;
+    padding-left: 2rem !important;    /* Preenchimento horizontal aumentado */
+    padding-right: 2rem !important;   /* Preenchimento horizontal aumentado */
+  }
+  .hero-section .position-absolute[class*="translate-middle"] .row.g-2 .col-6 > div[class*="bg-white"] .fw-bold {
+    font-size: 0.9rem; /* Reduzir ligeiramente o tamanho da fonte do padrão 1rem */
+    overflow-wrap: normal !important; /* Impedir quebra de palavras */
+    word-break: normal !important;    /* Impedir quebra de palavras */
+  }
+}
+
+/* O bloco @media (min-width: 992px) e (max-width: 1199.98px) mais específico agora é redundante devido à consolidação */
+/* e pode ser removido se seus estilos forem idênticos ou totalmente mesclados no bloco acima. */
+/* Por enquanto, deixando-o comentado ou para ser removido em uma limpeza separada se esta consolidação for final. */
+/*
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  .hero-section .position-absolute[class*="translate-middle"] {
+    width: 100% !important;
+  }
+  .hero-section .position-absolute[class*="translate-middle"] .row.g-2 .col-6 > div[class*="bg-white"] {
+    padding-top: 1.25rem !important;
+    padding-bottom: 1.25rem !important;
+    padding-left: 2rem !important;
+    padding-right: 2rem !important;
+  }
+  .hero-section .position-absolute[class*="translate-middle"] .row.g-2 .col-6 > div[class*="bg-white"] .fw-bold {
+    font-size: 0.9rem;
+    overflow-wrap: normal !important;
+    word-break: normal !important;
+  }
+}
+*/
+
 @media (max-width: 768px) {
   .hero-section h1 {
     font-size: 2.5rem;
@@ -193,13 +262,15 @@ html {
 }
 
 /* Botões personalizados */
+/* .btn-primary customizado com gradiente, ajustado para WCAG AA com texto branco */
 .btn-primary {
   background: linear-gradient(
     135deg,
-    var(--green-primary),
-    var(--blue-primary)
+    var(--green-darker-for-btn),
+    var(--blue-darker-for-btn)
   );
   border: none;
+  color: white !important; /* Garantir que o texto seja branco */
   font-weight: 600;
   padding: 0.75rem 2rem;
   border-radius: 6px;
@@ -207,30 +278,116 @@ html {
 }
 
 .btn-primary:hover {
-  background: linear-gradient(135deg, var(--green-light), var(--blue-light));
+  /* Manter o mesmo gradiente escuro do padrão para contraste garantido no hover */
+  background: linear-gradient(
+    135deg,
+    var(--green-darker-for-btn),
+    var(--blue-darker-for-btn)
+  );
+  filter: brightness(110%); /* Clarear levemente no hover como uma sugestão visual alternativa */
+  color: white !important; /* Garantir que o texto seja branco */
   transform: translateY(-2px);
   box-shadow: 0 8px 25px rgba(5, 150, 105, 0.3);
 }
 
-.btn-outline-success {
-  border: 2px solid white;
+/* .btn-outline-success customizado no Hero, ajustado para WCAG AA */
+/* Isso se aplica ao .btn-outline-success especificamente na .hero-section */
+.hero-section .btn-outline-success {
+  border: 2px solid var(--green-darker-for-btn); /* Borda correspondente ao novo BG */
   color: white;
   font-weight: 600;
   padding: 0.75rem 2rem;
   border-radius: 6px;
-  background-color: transparent;
+  background-color: var(--green-darker-for-btn); /* Fundo sólido para o estado padrão */
   transition: all 0.3s ease;
 }
 
-.btn-outline-success:hover {
-  background-color: var(--green-primary);
-  border-color: var(--green-primary);
+.hero-section .btn-outline-success:hover {
+  background-color: var(--green-darker-for-btn); /* Manter fundo escuro para contraste */
+  filter: brightness(115%); /* Clarear levemente no hover */
+  border-color: var(--green-darker-for-btn);
   color: white;
   transform: translateY(-2px);
   box-shadow: 0 8px 25px rgba(5, 150, 105, 0.3);
 }
 
-/* Stats Section */
+/* Substituições de botão Bootstrap padrão para contraste */
+
+/* .btn-danger: Já usa var(--red-primary). Substituir para melhor contraste. */
+.btn-danger {
+  background-color: var(--red-darker-for-btn) !important; /* Importante para substituir o Bootstrap */
+  border-color: var(--red-darker-for-btn) !important;
+  color: white !important;
+}
+.btn-danger:hover {
+  background-color: #901010 !important; /* Escurecido para melhor contraste (5.5:1 com branco) */
+  border-color: #901010 !important;
+  color: white !important;
+}
+
+
+/* .btn-outline-primary */
+.btn-outline-primary {
+  color: var(--blue-darker-for-btn);
+  border-color: var(--blue-darker-for-btn);
+}
+.btn-outline-primary:hover {
+  background-color: var(--blue-darker-for-btn);
+  border-color: var(--blue-darker-for-btn);
+  color: white;
+}
+
+/* .btn-outline-warning */
+.btn-outline-warning {
+  color: var(--yellow-darker-for-btn);
+  border-color: var(--yellow-darker-for-btn);
+}
+.btn-outline-warning:hover {
+  background-color: var(--yellow-darker-for-btn);
+  border-color: var(--yellow-darker-for-btn);
+  color: white;
+}
+
+/* .btn-outline-info */
+/* Supondo que .btn-outline-info seja usado, fornecendo uma correção */
+.btn-outline-info {
+  color: var(--info-darker-for-btn);
+  border-color: var(--info-darker-for-btn);
+}
+.btn-outline-info:hover {
+  background-color: var(--info-darker-for-btn);
+  border-color: var(--info-darker-for-btn);
+  color: white;
+}
+
+/* .btn-outline-light em fundos escuros */
+/* IMPORTANTE: Para que este estilo seja acessível, o próprio fundo da seção .bg-danger DEVE ser escuro o suficiente (por exemplo, var(--red-darker-for-btn) ou similar) para fornecer contraste >4.5:1 com texto branco. */
+.bg-danger .btn-outline-light {
+  color: white !important;
+  border-color: white !important;
+  background-color: transparent !important; /* Garantir que seja realmente contorno */
+}
+.bg-danger .btn-outline-light:hover {
+  color: black !important; /* Ou var(--gray-900) */
+  background-color: white !important;
+  border-color: black !important; /* Ou var(--gray-900) */
+}
+
+/* O estilo para .btn-outline-light em .bg-dark (por exemplo, rodapé) pode permanecer como está ou ser diferente, se necessário */
+/* Por enquanto, vamos supor que .bg-dark também precise ser escuro o suficiente para texto branco se estiver usando um estilo semelhante */
+.bg-dark .btn-outline-light {
+  color: white !important;
+  border-color: white !important;
+  background-color: transparent !important;
+}
+.bg-dark .btn-outline-light:hover {
+  color: black !important; /* Ou var(--gray-900) */
+  background-color: white !important;
+  border-color: black !important; /* Ou var(--gray-900) */
+}
+
+
+/* Seção de Estatísticas */
 .stats-section {
   background-color: var(--gray-50);
 }
@@ -287,7 +444,7 @@ html {
   margin-bottom: 0.5rem;
 }
 
-/* Featured Projects */
+/* Projetos em Destaque */
 .featured-projects {
   background-color: var(--gray-50);
 }
@@ -299,7 +456,18 @@ html {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
   transition: all 0.3s ease;
   border: 1px solid var(--gray-200);
-  height: 100%;
+  height: 100%; /* Garantir que o card ocupe a altura total da coluna pai */
+  display: flex !important; /* Forçar layout flex */
+  flex-direction: column !important; /* Forçar direção da coluna para itens flex */
+  /* text-align: center; provavelmente é herdado ou definido no pai, mas pode ser adicionado se necessário */
+}
+
+/* A regra .help-card .btn será modificada/removida posteriormente */
+
+@media (max-width: 576px) {
+  .project-card {
+    padding: 1rem; /* Reduzir preenchimento em telas pequenas */
+  }
 }
 
 .project-card:hover {
@@ -367,7 +535,7 @@ html {
   color: var(--blue-primary);
 }
 
-/* How to Help Section */
+/* Seção Como Ajudar */
 .how-to-help {
   background: white;
 }
@@ -380,11 +548,35 @@ html {
   transition: all 0.3s ease;
   border: 1px solid var(--gray-200);
   height: 100%;
+  display: flex !important; /* Garantir layout flex para alinhamento vertical */
+  flex-direction: column !important; /* Organizar itens em uma coluna */
+  /* text-align: center; provavelmente é herdado ou definido por uma classe utilitária no elemento */
+}
+
+.help-card p.text-muted.mb-4 {
+  flex-grow: 1; /* Permitir que o parágrafo ocupe o espaço disponível */
+}
+
+/* Remover margin-top: auto de .help-card .btn se existir, ou garantir que não esteja lá */
+/* A regra existente .help-card .btn que tinha margin-top: auto !important na linha 428 será ajustada. */
+/* Se esse fosse seu único estilo, ele será efetivamente removido/substituído por especificidade ou regras posteriores, se houver. */
+/* Por enquanto, adicionamos a regra do parágrafo e trataremos especificamente da regra .btn. */
+
+@media (max-width: 576px) {
+  .help-card {
+    padding: 1rem; /* Reduzir preenchimento em telas pequenas */
+  }
 }
 
 .help-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 576px) {
+  .stats-card {
+    padding: 1rem; /* Reduzir preenchimento em telas pequenas */
+  }
 }
 
 .help-icon {
@@ -410,7 +602,7 @@ html {
   margin-bottom: 1rem;
 }
 
-/* Footer */
+/* Rodapé */
 .footer {
   background-color: white !important;
 }
@@ -450,7 +642,7 @@ html {
 span{
     color:#002776;
 }
-/* Form Styles */
+/* Estilos de Formulário */
 .form-control {
   border: 2px solid var(--gray-200);
   border-radius: 6px;
@@ -481,7 +673,7 @@ span{
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
 }
 
-/* Responsive adjustments */
+/* Ajustes responsivos */
 @media (max-width: 768px) {
   .navbar-brand .brand-icon {
     width: 35px;
@@ -505,6 +697,19 @@ span{
   }
 }
 
+/* Garantir centralização do texto para caixas de informações do herói em telas < 768px */
+@media (max-width: 767.98px) {
+  .hero-section .position-absolute[class*="translate-middle"] .row.g-2 .col-6 > div[class*="bg-white"] {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .hero-section .position-absolute[class*="translate-middle"] .row.g-2 .col-6 > div[class*="bg-white"] .fw-bold {
+    text-align: center;
+  }
+}
+
 /* Animações */
 @keyframes fadeInUp {
   from {
@@ -521,7 +726,7 @@ span{
   animation: fadeInUp 0.6s ease-out;
 }
 
-/* Loading states */
+/* Estados de carregamento */
 .loading {
   opacity: 0.6;
   pointer-events: none;
@@ -547,7 +752,7 @@ span{
   color: var(--gray-600);
 }
 
-/* Page headers */
+/* Cabeçalhos de página */
 .page-header {
   background: linear-gradient(
     135deg,
@@ -570,7 +775,190 @@ span{
   color: var(--gray-600);
 }
 
-/* Utilities */
+/* Ajustes responsivos adicionais para telas menores */
+@media (max-width: 576px) {
+  .hero-section h1 {
+    font-size: 2rem; /* Reduzir ainda mais o tamanho da fonte h1 em telas muito pequenas */
+  }
+
+  .hero-section .lead {
+    font-size: 1rem; /* Reduzir o tamanho da fonte do parágrafo principal */
+  }
+
+  .btn-lg {
+    padding: 0.6rem 1.2rem; /* Ajustar preenchimento para botões grandes */
+    font-size: 0.9rem; /* Ajustar tamanho da fonte para botões grandes */
+  }
+
+  .display-4 {
+    font-size: 2.5rem; /* Ajustar tamanho da fonte display-4 */
+  }
+
+  .navbar-nav .nav-link {
+    padding: 0.5rem 0.75rem !important; /* Ajustar preenchimento do link de navegação */
+    margin: 0.25rem 0; /* Ajustar margem do link de navegação para empilhamento vertical */
+  }
+
+  .btn-emergency {
+    width: 100%; /* Tornar o botão de emergência com largura total na navbar em telas pequenas */
+    margin-top: 0.5rem;
+    margin-left: 0 !important; /* Substituir ms-3 */
+  }
+
+  .footer .col-lg-4,
+  .footer .col-lg-2,
+  .footer .col-md-6 {
+    text-align: center; /* Centralizar conteúdo do rodapé em telas pequenas */
+  }
+
+  .footer .emergency-contacts {
+    display: inline-block; /* Permitir centralização deste bloco */
+    text-align: left; /* Manter texto dentro do bloco alinhado à esquerda */
+  }
+
+  .emergency-alert .d-flex.align-items-center {
+    flex-direction: column; /* Empilhar ícone e texto verticalmente */
+    text-align: center;
+  }
+
+  .emergency-alert .fa-2x {
+    margin-bottom: 0.5rem; /* Adicionar espaço abaixo do ícone */
+    margin-right: 0 !important; /* Remover margem direita */
+  }
+
+  .emergency-alert .text-lg-end {
+    text-align: center !important; /* Centralizar botões */
+  }
+
+  .emergency-alert .d-flex.flex-wrap.gap-2.justify-content-lg-end {
+    justify-content: center !important; /* Centralizar botões */
+  }
+
+  .btn-group {
+    flex-wrap: wrap; /* Permitir que grupos de botões quebrem em telas pequenas */
+  }
+
+  /* Reduzir preenchimento para cards gerais dentro de seções de conteúdo em telas pequenas */
+  .py-5 .card,
+  section:not(.page-header):not(.hero-section) .card { /* Direcionar cards em seções de conteúdo */
+    padding: 1rem; /* Preenchimento reduzido padrão */
+  }
+
+  .py-5 .card .card-body, /* Garantir que o card-body dentro desses cards também tenha preenchimento ajustado se as classes p-* estiverem no card-body */
+  section:not(.page-header):not(.hero-section) .card .card-body {
+    padding: 1.25rem; /* Um pouco mais que o card se o próprio card não tiver classes de preenchimento */
+  }
+
+  /* Substituir para cards específicos se eles tiverem preenchimento grande explícito como p-4, p-5 */
+  .py-5 .card.p-4, .py-5 .card.p-5,
+  section:not(.page-header):not(.hero-section) .card.p-4,
+  section:not(.page-header):not(.hero-section) .card.p-5 {
+    padding: 1.5rem !important; /* Usar !important se utilitários Bootstrap estiverem substituindo */
+  }
+  .py-5 .card .card-body.p-4, .py-5 .card .card-body.p-5,
+  section:not(.page-header):not(.hero-section) .card .card-body.p-4,
+  section:not(.page-header):not(.hero-section) .card .card-body.p-5 {
+    padding: 1.5rem !important;
+  }
+  /* Ajustes específicos para caixas de informações da seção do herói em telas pequenas (garantir que isso faça parte do bloco principal <576px) */
+  .hero-section .position-absolute[class*="translate-middle"] .row.g-2 .col-6 > div[class*="bg-white"] {
+    padding: 0.5rem !important; /* Preenchimento reduzido do Bootstrap p-3 */
+    min-height: 80px; /* Dar um pouco de min-height se o conteúdo variar */
+    /* Propriedades flex são herdadas da regra <767.98px */
+  }
+
+  .hero-section .position-absolute[class*="translate-middle"] .row.g-2 .col-6 > div[class*="bg-white"] .fw-bold {
+    font-size: 0.7rem; /* Tamanho da fonte reduzido */
+    line-height: 1.2; /* Ajustar altura da linha para fonte menor */
+    /* text-align: center; é herdado da regra <767.98px */
+  }
+
+  .hero-section .position-absolute[class*="translate-middle"] .row.g-2 .col-6 > div[class*="bg-white"] > i.fas {
+    font-size: 1rem; /* Tamanho do ícone ajustado */
+    margin-bottom: 0.25rem; /* Espaço entre ícone e texto */
+  }
+
+  /* Reduzir margem inferior para parágrafo principal no herói em telas pequenas */
+  .hero-section p.lead {
+    margin-bottom: 2rem !important; /* Era mb-5 (3rem) */
+  }
+} /* Isso fecha corretamente o bloco @media (max-width: 576px) */
+
+/* Caixas de informações da seção do herói: Ajustar tamanho da fonte para telas muito pequenas para legibilidade */
+@media (max-width: 475px) {
+  .hero-section .position-absolute[class*="translate-middle"] .row.g-2 .col-6 > div[class*="bg-white"] .fw-bold {
+    font-size: 0.8rem; /* Um pouco maior que 0.7rem em <576px para melhor legibilidade */
+  }
+  /* Outras propriedades como preenchimento, min-height, tamanho do ícone serão herdadas da query <576px */
+}
+
+/* Caixas de informações da seção do herói: Ajustes para telas < 460px para melhor ajuste do texto */
+@media (max-width: 460px) {
+  .hero-section .position-absolute[class*="translate-middle"] .row.g-2 .col-6 > div[class*="bg-white"] {
+    padding: 0.65rem !important; /* Preenchimento ligeiramente aumentado de 0.5rem */
+  }
+  .hero-section .position-absolute[class*="translate-middle"] .row.g-2 .col-6 > div[class*="bg-white"] .fw-bold {
+    font-size: 0.75rem; /* Fonte ligeiramente reduzida de 0.8rem (em <475px) para equilibrar com o preenchimento */
+  }
+}
+
+/* Ajuste fino para telas muito estreitas como 320px para evitar estouro de texto nas caixas de informações do herói */
+@media (max-width: 430px) {
+  .hero-section .position-absolute[class*="translate-middle"] .row.g-2 .col-6 > div[class*="bg-white"] .fw-bold {
+    font-size: 0.7rem; /* Reduzir ainda mais o tamanho da fonte */
+    overflow-wrap: break-word; /* Permitir que palavras longas quebrem para evitar estouro */
+  }
+  /* Preenchimento (0.65rem), min-height (80px) e tamanho do ícone (1rem) são herdados de <460px e <576px respectivamente */
+}
+
+/* Aumentar a largura do contêiner pai das caixas de informações em telas muito pequenas para dar mais espaço */
+@media (max-width: 390px) {
+  .hero-section .position-absolute[class*="translate-middle"] {
+    width: 90% !important;
+    /* A centralização é tratada pelas classes Bootstrap existentes: top-50, start-50, translate-middle */
+  }
+}
+
+/* Ajustes adicionais para telas muito estreitas (por exemplo, 320px-360px) */
+@media (max-width: 360px) {
+  .hero-section h1 {
+    font-size: 1.75rem; /* Reduzir ainda mais o tamanho da fonte H1 */
+  }
+}
+
+/* Correção de Acessibilidade: Melhorar contraste para ícones nas Caixas de Informações da Seção do Herói */
+.hero-section .position-absolute[class*="translate-middle"] .row.g-2 .col-6 > div[class*="bg-white"] > i.text-primary {
+  color: var(--blue-darker-for-btn) !important;
+}
+.hero-section .position-absolute[class*="translate-middle"] .row.g-2 .col-6 > div[class*="bg-white"] > i.text-warning {
+  color: var(--yellow-darker-for-btn) !important;
+}
+.hero-section .position-absolute[class*="translate-middle"] .row.g-2 .col-6 > div[class*="bg-white"] > i.text-success {
+  color: var(--green-darker-for-btn) !important;
+}
+.hero-section .position-absolute[class*="translate-middle"] .row.g-2 .col-6 > div[class*="bg-white"] > i.text-info {
+  color: var(--info-darker-for-btn) !important;
+}
+
+/* Dimensionamento para o contêiner da caixa de informações do herói em intervalos de tela específicos */
+/* Dimensionamento para tablet do contêiner da caixa de informações do herói */
+@media (min-width: 576px) and (max-width: 767.98px) {
+  .hero-section .position-absolute[class*="translate-middle"] {
+    width: 70% !important;
+  }
+}
+
+/* Dimensionamento para celular maior / tablet menor do contêiner da caixa de informações do herói */
+@media (min-width: 391px) and (max-width: 575.98px) {
+  .hero-section .position-absolute[class*="translate-middle"] {
+    width: 80% !important;
+  }
+}
+/* Observação: Para telas < 391px, a largura é 90% (da regra @media max-width: 390px) */
+/* Para telas > 767.98px, a largura será auto/padrão, a menos que outras regras se apliquem */
+
+
+/* Utilitários */
 .text-brasil-green {
   color: var(--brasil-green) !important;
 }
