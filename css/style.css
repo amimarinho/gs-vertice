@@ -88,11 +88,7 @@ html {
   background-color: rgba(255, 255, 255, 0.95) !important;
 }
 
-@media (min-width: 576px) {
-  .navbar {
-    /* margin-inline: 1rem; */ /* Removido para permitir que o fundo da navbar se estenda por toda a largura em todos os tamanhos de tela */
-  }
-}
+
 
 /* Dimensionamento para tablet do contêiner da caixa de informações do herói */
 @media (min-width: 576px) and (max-width: 767.98px) { /* Corrigido para 767.98px */
